@@ -17,6 +17,7 @@ const AddTaskForm = ({ list, onAddTask }) => {
     const obj = {
       listId: list.id,
       text: inputValue,
+      timer: 0,
       completed: false
     };
     setIsLoading(true);

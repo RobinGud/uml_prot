@@ -17,12 +17,12 @@
       "listId": 2,
       "text": "Изучить Redux",
       "completed": true,
-      "timer": 73
+      "timer": 84
     },
     {
       "id": 2,
       "listId": 2,
-      "text": "Изучить паттерны проектирования",
+      "text": "Сдать лабораторную работу",
       "completed": false,
       "timer": 44
     },
@@ -31,11 +31,11 @@
       "text": "Написать компонент",
       "completed": false,
       "id": 6,
-      "timer": 0
+      "timer": 3
     },
     {
       "listId": 7,
-      "text": "endPoint для пользователей",
+      "text": "Спроектировать БД",
       "completed": false,
       "id": 7,
       "timer": 0

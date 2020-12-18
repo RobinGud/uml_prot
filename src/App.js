@@ -143,7 +143,6 @@ function App() {
 
   return (
     <div className="todo">
-      {console.log(history)}
       <div className="todo__sidebar">
         <List
           onClickItem={list => {
