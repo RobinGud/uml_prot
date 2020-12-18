@@ -17,14 +17,14 @@
       "listId": 2,
       "text": "Изучить Redux",
       "completed": true,
-      "timer": 10
+      "timer": 73
     },
     {
       "id": 2,
       "listId": 2,
       "text": "Изучить паттерны проектирования",
       "completed": false,
-      "timer": 5
+      "timer": 44
     },
     {
       "listId": 2,

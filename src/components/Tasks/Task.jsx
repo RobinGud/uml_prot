@@ -9,60 +9,36 @@ let parseTime = (time) => {
   return `${('00'+hour).slice(-2)}:${('00'+minute).slice(-2)}:${('00'+second).slice(-2)}`
 }
 
-const Task = ({ id, text, completed, list, onRemove, onEdit, onComplete, onStopTimer }) => {
+const Task = ({ id, timer ,text, completed, list, onRemove, onEdit, onComplete, onStopTimer }) => {
   const onChangeCheckbox = e => {
     onComplete(list.id, id, e.target.checked);
   };
 
-let [Timer, SetTimer] = useState(0)
+let [Timer, SetTimer] = useState(timer)
 let [isOnTimer, SetIsOnTimer] = useState(false)
 
  let onTogleTimer = () => {
    SetIsOnTimer(!isOnTimer)
-  //  while(isOnTimer) {
-  //   setTimeout(() => {
-  //     console.log('tick' + Timer);
-  //     SetTimer(Timer + 1)
-  //   }, 1000);
-  //  }
-//  incrementTimer()
-// timerId()
  }
 
  useEffect(() => {
    if (isOnTimer) { 
      timerId = setTimeout(function tick() {
-       // console.log(Timer)
-       console.log(isOnTimer)
-        // alert('tick');
         SetTimer((Timer)=> (Timer + 1))
-        // if (isOnTimer) 
           timerId = setTimeout(tick, 1000); // (*)
       }, 1000);
     } else {
       timerId = clearTimeout(timerId);
-      console.log(Timer)
       onStopTimer(list.id, { id, Timer })
     }
    return () => {
    }
  }, [isOnTimer])
- 
-//  let incrementTimer = () => {
-//   let timerId = setTimeout(function tick() {
-//     // console.log(Timer)
-//     // alert('tick');
-//     SetTimer((Timer)=> (Timer + 1))
-//     if (isOnTimer) 
-//       timerId = setTimeout(tick, 1000); // (*)
-//   }, 1000);
-//  }
 
 
   return (
     <div key={id} className="tasks__items-row">
       <div className="checkbox">
-        {console.log(Timer)}
         <input
           onChange={onChangeCheckbox}
           id={`task-${id}`}
@@ -91,16 +67,24 @@ let [isOnTimer, SetIsOnTimer] = useState(false)
       <pre style={{opacity: "1"}}>{parseTime(Timer)}</pre>
       <div className="tasks__items-row-actions">
       <div onClick={() => onTogleTimer()}>
-          <svg
+          {!isOnTimer ? <svg
             width="11"
             height="11"
             viewBox="0 0 11 11"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <polygon points="6.33 3.69 6.33 10.39 10.3 7.04 6.33 3.69" fill="black"/>
-      {/* <path d="M26,13A13,13,0,1,1,13,0,13,13,0,0,1,26,13ZM13,2.18A10.89,10.89,0,1,0,23.84,13.06,10.89,10.89,0,0,0,13,2.18Z" fill="black"/> */}
-          </svg>
+            <polygon points="2 0 2 11 11 5.5 2 0" fill="black"/>
+          </svg> : <svg
+            width="11"
+            height="11"
+            viewBox="0 0 11 11"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+      <polygon points="5 1 5 13 1 13 1 1" fill="black"/>
+            <polygon points="10 1 10 13 6 13 6 1" fill="black"/>
+          </svg> }
         </div>
         <div onClick={() => onEdit(list.id, { id, text })}>
           <svg

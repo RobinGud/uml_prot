@@ -38,7 +38,6 @@ function App() {
 
   const onEditTask = (listId, taskObj) => {
     const newTaskText = window.prompt('Текст задачи', taskObj.text);
-    console.log(taskObj)
     if (!newTaskText) {
       return;
     }
@@ -65,11 +64,6 @@ function App() {
   };
 
   const onStopTimer = (listId, taskObj) => {
-    // const newTaskText = window.prompt('Текст задачи', taskObj.text);
-    console.log(taskObj)
-    // if (!newTaskText) {
-    //   return;
-    // }
 
     const newList = lists.map(list => {
       if (list.id === listId) {
@@ -140,7 +134,7 @@ function App() {
   };
 
   useEffect(() => {
-    const listId = history.location.pathname.split('lists/')[1];
+    const listId = history.location.pathname.split('/lists/')[1];
     if (lists) {
       const list = lists.find(list => list.id === Number(listId));
       setActiveItem(list);
@@ -149,6 +143,7 @@ function App() {
 
   return (
     <div className="todo">
+      {console.log(history)}
       <div className="todo__sidebar">
         <List
           onClickItem={list => {
@@ -208,19 +203,20 @@ function App() {
                 onCompleteTask={onCompleteTask}
                 withoutEmpty
               />
-            ))}
+              ))}
         </Route>
         <Route path="/lists/:id">
           {lists && activeItem && (
             <Tasks
-              list={activeItem}
-              onAddTask={onAddTask}
-              onEditTitle={onEditListTitle}
-              onRemoveTask={onRemoveTask}
-              onEditTask={onEditTask}
-              onCompleteTask={onCompleteTask}
+            list={activeItem}
+            onAddTask={onAddTask}
+            onEditTitle={onEditListTitle}
+            onRemoveTask={onRemoveTask}
+            onEditTask={onEditTask}
+            onStopTimer={onStopTimer}
+            onCompleteTask={onCompleteTask}
             />
-          )}
+            )}
         </Route>
       </div>
     </div>

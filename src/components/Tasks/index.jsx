@@ -50,6 +50,7 @@ const Tasks = ({
           list.tasks.map(task => (
             <Task
               key={task.id}
+              timer={task.timer}
               list={list}
               onEdit={onEditTask}
               onStopTimer={onStopTimer}//
